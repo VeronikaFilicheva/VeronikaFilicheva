@@ -1,16 +1,16 @@
-package lesson1;
+package lesson2;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static java.lang.System.setProperty;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
-public class SimpleTest {
+
+public class SimpleTestParallel {
 
     @BeforeClass
     public void beforeClass(){
@@ -42,6 +42,6 @@ public class SimpleTest {
         //6
         assertEquals(driver.getTitle(),"Home Page");
 
-       // driver.close();
+        // driver.close();
     }
 }
