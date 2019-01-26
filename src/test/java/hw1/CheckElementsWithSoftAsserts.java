@@ -45,7 +45,7 @@ public class CheckElementsWithSoftAsserts {
         driver.navigate().to("https://epam.github.io/JDI/");
 
         //2 Assert Browser title
-        softAssert.assertEquals(driver.getTitle(), "Home Prage");
+        softAssert.assertEquals(driver.getTitle(), "Home Page");
 
         //3 Perform login
         driver.findElement(By.cssSelector("[id='user-icon']")).click();
