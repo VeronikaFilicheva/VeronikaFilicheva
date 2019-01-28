@@ -17,7 +17,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CheckElementsWithSoftAsserts {
-    WebDriver driver;
+    private WebDriver driver;
 
     SoftAssert softAssert = new SoftAssert();
 

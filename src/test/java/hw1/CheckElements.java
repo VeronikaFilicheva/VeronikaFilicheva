@@ -17,7 +17,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckElements {
 
-    WebDriver driver;
+    private WebDriver driver;
 
     @BeforeClass
     public void beforeClass(){
