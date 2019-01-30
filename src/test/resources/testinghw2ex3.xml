@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite" parallel="methods" thread-count="3" >
+
+    <test name="HP Test" >
+
+        <classes>
+
+            <class name="hw2.ex3.CheckElementsRefactored" />
+
+        </classes>
+
+    </test>
+
+</suite>
