@@ -4,10 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
@@ -22,17 +19,18 @@ public class CheckElements {
     @BeforeClass
     public void beforeClass(){
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-        driver = new ChromeDriver();
-
+        //better move this action to BeforeMethod - done
     }
 
     @BeforeMethod
-    public void beforMethod(){
+    public void beforeMethod(){
+        driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
 
-    @AfterClass
-    public void afterClass(){
+    //better move this action to AfterMethod - done
+    @AfterMethod
+    public void afterMethod(){
         driver.close();
     }
 
@@ -52,7 +50,9 @@ public class CheckElements {
         driver.findElement(By.cssSelector("[id='login-button']")).click();
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        driver.findElement(By.cssSelector("[id='user-name']")).equals("PITER CHAILOVSKII");
+        //incorrect assert, get text from element and use assert - fixed
+        WebElement userName = driver.findElement(By.cssSelector(".profile-photo [ui = 'label']"));
+        assertEquals(userName.getText(), "PITER CHAILOVSKII");
 
         //5 Assert Browser title
         assertEquals(driver.getTitle(), "Home Page");
@@ -98,9 +98,11 @@ public class CheckElements {
 
 
         //9 Assert a text of the main headers
-        WebElement mainTitletext=driver.findElement(By.cssSelector("h3.main-title"));
-        assertTrue(mainTitletext.isDisplayed());
-        assertEquals(mainTitletext.getText(), "EPAM FRAMEWORK WISHES…");
+        //mainTitleText
+        //use space before and after "="  - fixed
+        WebElement mainTitleText = driver.findElement(By.cssSelector("h3.main-title"));
+        assertTrue(mainTitleText.isDisplayed());
+        assertEquals(mainTitleText.getText(), "EPAM FRAMEWORK WISHES…");
 
         WebElement mainTitleTextCenter=driver.findElement(By.cssSelector(".main-txt"));
         assertTrue(mainTitleTextCenter.isDisplayed());
