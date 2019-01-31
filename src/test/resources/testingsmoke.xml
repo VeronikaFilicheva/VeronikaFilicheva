@@ -9,11 +9,9 @@
             </run>
         </groups>
 
-        <classes>
-            <class name="hw2.ex2.HomePageSmokeTests"/>
-            <class name="hw2.ex2.HomePageRegressAndSmoke"/>
-            <class name="hw2.ex2.HomePageRegressSmokeSimultaneously"/>
-        </classes>
+        <packages>
+            <package name="hw2.ex2"/>
+        </packages>
 
     </test>
 </suite>
