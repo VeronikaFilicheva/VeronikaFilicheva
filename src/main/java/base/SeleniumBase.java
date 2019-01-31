@@ -9,7 +9,7 @@ public abstract class SeleniumBase {
     protected WebDriver driver;
 
     @BeforeSuite(alwaysRun = true)
-    public void beforeSuit(){
+    public void beforeSuite(){
         setProperty("webdriver.chrome.driver","src\\main\\resources\\chromedriver.exe");
     }
 }
