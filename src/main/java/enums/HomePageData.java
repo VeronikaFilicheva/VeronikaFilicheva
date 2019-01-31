@@ -4,14 +4,14 @@ import pageObjects.HomePage;
 
 public enum HomePageData {
 
-    HOME_PAGE_TITLE ("Home Page"),
-    INDEX_HTML_URL ("https://epam.github.io/JDI/");
+    HOME_PAGE("https://epam.github.io/JDI/index.html", "Home Page");
 
-    private String value;
+    public String navigateTo;
+    public String title;
 
-    HomePageData(String value){this.value=value;}
-
-    @Override
-    public String toString(){return value;}
+    HomePageData(String navigateTo, String title) {
+        this.navigateTo = navigateTo;
+        this.title = title;
+    }
 
 }

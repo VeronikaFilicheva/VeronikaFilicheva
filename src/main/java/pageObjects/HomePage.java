@@ -63,8 +63,8 @@ public class HomePage {
 
 //Action Methods
 
-    public void open(Object object){
-        driver.navigate().to(object.toString());
+    public void open(String s){
+        driver.navigate().to(s);
     }
 
     public void login(String name, String password){
@@ -85,8 +85,8 @@ public class HomePage {
 
 //Elements Check
 
-    public void getTitle(Object object) {
-        assertEquals(driver.getTitle(), object.toString());
+    public void getTitle(String s) {
+        assertEquals(driver.getTitle(), s);
     }
 
     public void checkNavBarElements(){

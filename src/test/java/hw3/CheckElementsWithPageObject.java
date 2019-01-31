@@ -9,8 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
-import static enums.HomePageData.HOME_PAGE_TITLE;
-import static enums.HomePageData.INDEX_HTML_URL;
+import static enums.HomePageData.HOME_PAGE;
 import static enums.Users.PITER_CHAILOVSKII;
 
 public class CheckElementsWithPageObject extends SeleniumBase {
@@ -34,10 +33,10 @@ public class CheckElementsWithPageObject extends SeleniumBase {
     public void checkElementsWithPageObject() {
 
         //1 Open test site by URL
-        homePage.open(INDEX_HTML_URL);
+        homePage.open(HOME_PAGE.navigateTo);
 
         //2 Assert Browser title
-        homePage.getTitle(HOME_PAGE_TITLE);
+        homePage.getTitle(HOME_PAGE.title);
 
         //3 Perform login
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
@@ -46,7 +45,7 @@ public class CheckElementsWithPageObject extends SeleniumBase {
         homePage.userIsLogged(PITER_CHAILOVSKII.name);
 
         //5 Assert Browser title
-        homePage.getTitle(HOME_PAGE_TITLE);
+        homePage.getTitle(HOME_PAGE.title);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
         homePage.checkNavBarElements();
@@ -80,6 +79,6 @@ public class CheckElementsWithPageObject extends SeleniumBase {
 
         //16 Assert that there is Footer
         homePage.checkFooter();
-        
+
     }
 }
