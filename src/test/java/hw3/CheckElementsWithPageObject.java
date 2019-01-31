@@ -80,11 +80,6 @@ public class CheckElementsWithPageObject extends SeleniumBase {
 
         //16 Assert that there is Footer
         homePage.checkFooter();
-
-
-
-
-
-
+        
     }
 }

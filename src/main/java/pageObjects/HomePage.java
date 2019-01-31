@@ -163,5 +163,4 @@ public class HomePage {
         assertTrue(footer.isDisplayed());
     }
 
-
 }
