@@ -25,8 +25,9 @@ public class CheckTextsBelowImages extends SeleniumBase{
     driver.close();
     }
 
-    @DataProvider (name = "dataProviderMethod", parallel = true)
-    private Object[][] dataProviderMethod() {
+    // TODO: DataProviders name should point test data type,e.g. 'IndexPageIconText' -done
+    @DataProvider (name = "IndexPageIconText", parallel = true)
+    private Object[][] IndexPageIconText() {
         return new Object[][]{
                 {0, "To include good practices\n" +
                         "and ideas from successful\n" +
@@ -41,7 +42,7 @@ public class CheckTextsBelowImages extends SeleniumBase{
         };
     }
 
-    @Test(dataProvider = "dataProviderMethod")
+    @Test(dataProvider = "IndexPageIconText")
     public void checkTextsBelowImages(int i, String s){
 
         //1 Open test site by URL
