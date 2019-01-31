@@ -24,7 +24,7 @@ public class CheckTextsBelowImages extends SeleniumBase{
     public void afterTest(){
     driver.close();
     }
-
+    //TODO: DataProviders name should point test data type,e.g. 'IndexPageIconText'
     @DataProvider (name = "dataProviderMethod", parallel = true)
     private Object[][] dataProviderMethod() {
         return new Object[][]{

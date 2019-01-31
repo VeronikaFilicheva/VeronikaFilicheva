@@ -23,7 +23,7 @@ public class CheckElementsRefactored {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
         time = currentTimeMillis();
     }
-
+    //TODO: driver should be initialized before every test method
     @BeforeClass
     public void beforeClass() {
         driver = new ChromeDriver();
@@ -38,7 +38,8 @@ public class CheckElementsRefactored {
     public void afterSuite() {
         System.out.println("Test executed " + (currentTimeMillis() - time));
     }
-
+    //TODO: driver should be closed after every test method
+    //TODO: You can check in afterclass if driver was closedand quite it ifnot
     @AfterClass
     public void afterClass() {
         driver.close();
