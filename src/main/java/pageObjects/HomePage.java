@@ -62,7 +62,7 @@ public class HomePage {
     private WebElement subHeader;
 
 //Action Methods
-
+    // TODO I suggest set param for the method to enum
     public void open(String s){
         driver.navigate().to(s);
     }
@@ -84,16 +84,18 @@ public class HomePage {
     }
 
 //Elements Check
-
+// TODO I suggest set param for the method to enum
     public void getTitle(String s) {
         assertEquals(driver.getTitle(), s);
     }
 
+    // TODO Why it is not parametrized?
     public void checkNavBarElements(){
         assertEquals(navBar.size(),4);
         for (WebElement element : navBar) {
             assertTrue(element.isDisplayed());
         }
+        // TODO Is it possible simplify this checks?
         assertEquals(navBar.get(0).getText(), "HOME");
         assertEquals(navBar.get(1).getText(), "CONTACT FORM");
         assertEquals(navBar.get(2).getText(), "SERVICE");
@@ -107,6 +109,7 @@ public class HomePage {
         }
     }
 
+    // TODO Why you do not send parameter to this method?
     public void checkBenefitText() {
         assertEquals(benefitTexts.size(), 4);
         for (WebElement element : benefitTexts) {
@@ -140,16 +143,23 @@ public class HomePage {
         assertTrue(iFrame.isDisplayed());
     }
 
+    // TODO Please make name as described in Java Code Convention
+    // TODO Missing space ){
     public void checkEpamLogointoIframe(){
         driver.switchTo().frame(iFrame);
         assertTrue(epamLogoInIfrrame.isDisplayed());
     }
 
+    // TODO I think that this method should be parametrized
+    // TODO Missing space ){
     public void checkSubHeaderText(){
         assertTrue(subHeader.isDisplayed());
         assertEquals(subHeader.getText(),"JDI GITHUB");
     }
 
+    // TODO What about parametrization here?
+    // TODO Missing space ){
+    // TODO Please try to make method name correlated with body
     public void checkSubHeaderLink(){
         assertEquals(subHeader.getAttribute("href"),"https://github.com/epam/JDI");
     }

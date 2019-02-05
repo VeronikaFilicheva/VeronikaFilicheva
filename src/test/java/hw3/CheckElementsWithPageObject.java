@@ -39,9 +39,11 @@ public class CheckElementsWithPageObject extends SeleniumBase {
         homePage.getTitle(HOME_PAGE.title);
 
         //3 Perform login
+        // TODO Why you send username and password as parameters? I guess here you could use only enum User
         homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
 
         //4 Assert User name in the left-top side of screen that user is loggined
+        // TODO Why you send name as parameter? I guess here you could use only enum User
         homePage.userIsLogged(PITER_CHAILOVSKII.name);
 
         //5 Assert Browser title

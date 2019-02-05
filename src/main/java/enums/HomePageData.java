@@ -1,5 +1,6 @@
 package enums;
 
+// TODO Delete unused import
 import pageObjects.HomePage;
 
 public enum HomePageData {
