@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
-import static enums.NavBarElements.HEADER_ITEMS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
