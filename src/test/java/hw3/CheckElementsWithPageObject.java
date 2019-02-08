@@ -10,6 +10,9 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
 import static enums.HomePageData.HOME_PAGE;
+import static enums.NavBarElements.HEADER_ITEMS;
+import static enums.SubHeader.JDI_GITHUB;
+import static enums.TextsAboutBenefits.BENEFITS;
 import static enums.Users.PITER_CHAILOVSKII;
 
 public class CheckElementsWithPageObject extends SeleniumBase {
@@ -33,28 +36,28 @@ public class CheckElementsWithPageObject extends SeleniumBase {
     public void checkElementsWithPageObject() {
 
         //1 Open test site by URL
-        homePage.open(HOME_PAGE.navigateTo);
+        homePage.open(HOME_PAGE);
 
         //2 Assert Browser title
-        homePage.getTitle(HOME_PAGE.title);
+        homePage.getTitle(HOME_PAGE);
 
         //3 Perform login
-        homePage.login(PITER_CHAILOVSKII.login, PITER_CHAILOVSKII.password);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        homePage.userIsLogged(PITER_CHAILOVSKII.name);
+        homePage.userIsLogged(PITER_CHAILOVSKII);
 
         //5 Assert Browser title
-        homePage.getTitle(HOME_PAGE.title);
+        homePage.getTitle(HOME_PAGE);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
-        homePage.checkNavBarElements();
+        homePage.checkNavBarElements(HEADER_ITEMS);
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         homePage.checkImagesDisplayed();
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        homePage.checkBenefitText();
+        homePage.checkBenefitText(BENEFITS);
 
         //9 Assert a text of the main headers
         homePage.checkMainHeaderHasText();
@@ -63,16 +66,16 @@ public class CheckElementsWithPageObject extends SeleniumBase {
         homePage.checkIframe();
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
-        homePage.checkEpamLogointoIframe();
+        homePage.checkEpamLogoIntoIframe();
 
         //12 Switch to original window back
         homePage.switchToOriginalWindow();
 
         //13 Assert a text of the sub header
-        homePage.checkSubHeaderText();
+        homePage.checkSubHeaderText(JDI_GITHUB);
 
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        homePage.checkSubHeaderLink();
+        homePage.checkSubHeaderLink(JDI_GITHUB);
 
         //15 Assert that there is Left Section
         homePage.checkLeftSection();

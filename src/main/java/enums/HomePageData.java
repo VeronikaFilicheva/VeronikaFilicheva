@@ -1,7 +1,5 @@
 package enums;
 
-import pageObjects.HomePage;
-
 public enum HomePageData {
 
     HOME_PAGE("https://epam.github.io/JDI/index.html", "Home Page");

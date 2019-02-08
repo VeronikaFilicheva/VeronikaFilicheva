@@ -1,11 +1,14 @@
 package pageObjects;
 
+import enums.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import static enums.NavBarElements.HEADER_ITEMS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -59,73 +62,73 @@ public class HomePage {
     private WebElement footer;
 
     @FindBy(css = "h3.text-center > a")
-    private WebElement subHeader;
+    private WebElement header;
 
 //Action Methods
 
-    public void open(String s){
-        driver.navigate().to(s);
+    public void open(HomePageData homePageData) {
+        driver.navigate().to(homePageData.navigateTo);
     }
 
-    public void login(String name, String password){
+    public void login(Users user) {
         loginIcon.click();
-        userField.sendKeys(name);
-        passwordField.sendKeys(password);
+        userField.sendKeys(user.login);
+        passwordField.sendKeys(user.password);
         submitButton.click();
     }
 
-    public void userIsLogged(String s) {
+    public void userIsLogged(Users user) {
         loggedInUserName.isDisplayed();
-        assertEquals(loggedInUserName.getText(), s);
+        assertEquals(loggedInUserName.getText(), user.name);
     }
 
-    public void switchToOriginalWindow(){
+    public void switchToOriginalWindow() {
         driver.switchTo().defaultContent();
     }
 
 //Elements Check
 
-    public void getTitle(String s) {
-        assertEquals(driver.getTitle(), s);
+    public void getTitle (HomePageData homePageData) {
+        assertEquals(driver.getTitle(), homePageData.title);
     }
 
-    public void checkNavBarElements(){
+    public void checkNavBarElements(NavBarElements navBarElements) {
         assertEquals(navBar.size(),4);
-        for (WebElement element : navBar) {
-            assertTrue(element.isDisplayed());
+
+        List<String> headerItems = new ArrayList<String>();
+        headerItems.add(navBarElements.home);
+        headerItems.add(navBarElements.contactForm);
+        headerItems.add(navBarElements.service);
+        headerItems.add(navBarElements.metalsAndColors);
+
+        for (int i=0;i<navBar.size();i++ ) {
+            assertTrue(navBar.get(i).isDisplayed());
+            assertEquals(navBar.get(i).getText(),headerItems.get(i));
         }
-        assertEquals(navBar.get(0).getText(), "HOME");
-        assertEquals(navBar.get(1).getText(), "CONTACT FORM");
-        assertEquals(navBar.get(2).getText(), "SERVICE");
-        assertEquals(navBar.get(3).getText(), "METALS & COLORS");
+
     }
 
-    public void checkImagesDisplayed(){
+    public void checkImagesDisplayed() {
         assertEquals(benefitIconsImages.size(),4);
         for (WebElement element : benefitIconsImages){
             assertTrue(element.isDisplayed());
         }
     }
 
-    public void checkBenefitText() {
+    public void checkBenefitText(TextsAboutBenefits textsAboutBenefits) {
         assertEquals(benefitTexts.size(), 4);
-        for (WebElement element : benefitTexts) {
-            element.isDisplayed();
+
+        List<String> texts=new ArrayList<String>();
+        texts.add(textsAboutBenefits.practize);
+        texts.add(textsAboutBenefits.custom);
+        texts.add(textsAboutBenefits.platform);
+        texts.add(textsAboutBenefits.base);
+
+        for (int i=0;i<benefitTexts.size();i++) {
+            assertTrue(benefitTexts.get(i).isDisplayed());
+            assertEquals(benefitTexts.get(i).getText(),texts.get(i));
         }
-        assertEquals(benefitTexts.get(0)
-                .getText(), "To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM project");
-        assertEquals(benefitTexts.get(1)
-                .getText(), "To be flexible and\n" +
-                "customizable");
-        assertEquals(benefitTexts.get(2)
-                .getText(), "To be multiplatform");
-        assertEquals(benefitTexts.get(3)
-                .getText(), "Already have good base\n" +
-                "(about 20 internal and\n" +
-                "some external projects),\n" +
-                "wish to get more…");
+
     }
 
     public void checkMainHeaderHasText() {
@@ -136,30 +139,30 @@ public class HomePage {
                 "AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
     }
 
-    public void checkIframe(){
+    public void checkIframe() {
         assertTrue(iFrame.isDisplayed());
     }
 
-    public void checkEpamLogointoIframe(){
+    public void checkEpamLogoIntoIframe() {
         driver.switchTo().frame(iFrame);
         assertTrue(epamLogoInIfrrame.isDisplayed());
     }
 
-    public void checkSubHeaderText(){
-        assertTrue(subHeader.isDisplayed());
-        assertEquals(subHeader.getText(),"JDI GITHUB");
+    public void checkSubHeaderText(SubHeader subHeader) {
+        assertTrue(header.isDisplayed());
+        assertEquals(header.getText(), subHeader.name);
     }
 
-    public void checkSubHeaderLink(){
-        assertEquals(subHeader.getAttribute("href"),"https://github.com/epam/JDI");
+    public void checkSubHeaderLink(SubHeader subHeader) {
+        assertEquals(header.getAttribute("href"), subHeader.link);
     }
 
 
-    public void checkLeftSection(){
+    public void checkLeftSection() {
         assertTrue(leftSection.isDisplayed());
     }
 
-    public void checkFooter(){
+    public void checkFooter() {
         assertTrue(footer.isDisplayed());
     }
 
