@@ -2,7 +2,6 @@ package enums;
 
 public enum Logs {
 
-
     VALUE_CHANGED_TO {
         @Override
         public String toString() {

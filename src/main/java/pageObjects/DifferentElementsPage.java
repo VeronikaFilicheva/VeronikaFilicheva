@@ -15,7 +15,6 @@ import static enums.Checkboxes.FIRE;
 import static enums.Logs.*;
 import static enums.Radiobuttons.*;
 import static enums.Radiobuttons.SELEN;
-import static org.testng.Assert.assertTrue;
 
 public class DifferentElementsPage {
     @FindBy(css = "[class='label-checkbox']")

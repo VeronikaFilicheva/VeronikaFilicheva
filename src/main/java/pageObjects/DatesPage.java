@@ -2,15 +2,12 @@ package pageObjects;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.actions;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.Logs.*;
+
 
 public class DatesPage {
     @FindBy(css = ".ui-slider")

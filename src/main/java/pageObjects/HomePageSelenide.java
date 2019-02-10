@@ -8,7 +8,6 @@ import enums.Users;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.LeftSectionMenu.getLeftSectionCategoriesList;
 import static enums.ServiceCategories.getHeaderCategoriesList;
