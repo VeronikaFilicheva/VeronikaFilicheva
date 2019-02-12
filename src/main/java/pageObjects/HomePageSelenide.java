@@ -56,11 +56,11 @@ public class HomePageSelenide {
         }
 
     // Check Elements
-        public void checkTitle (HomePageData homePageData) {
+        public void checkPageTitle (HomePageData homePageData) {
             assertEquals(getWebDriver().getTitle(),homePageData.title);
         }
 
-        public void checkUserIsLogged(Users user) {
+        public void checkUserName(Users user) {
             loggedInUserName.isDisplayed();
             assertEquals(loggedInUserName.getText(), user.name);
         }

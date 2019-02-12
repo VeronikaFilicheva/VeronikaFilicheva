@@ -38,14 +38,14 @@ public class ServicePageInterfaceCheck extends SelenideBase {
     public void servicePageInterfaceCheck () {
         //TODO; rename method - done
         //2 Assert Browser title
-        homePageSelenide.checkTitle(HOME_PAGE);
+        homePageSelenide.checkPageTitle(HOME_PAGE);
 
         //3 Perform login
         homePageSelenide.login(PITER_CHAILOVSKII);
 
         //TODO; rename method - done
         // 4 Assert User name in the left-top side of screen that user is loggined
-        homePageSelenide.checkUserIsLogged(PITER_CHAILOVSKII);
+        homePageSelenide.checkUserName(PITER_CHAILOVSKII);
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
         //TODO; method should be parameterized - done

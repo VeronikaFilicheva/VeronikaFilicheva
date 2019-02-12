@@ -34,14 +34,14 @@ public class DataPageSlidersCheck extends SelenideBase {
 
         //TODO: rename method; get() tells that we should GET some data from object; - done
         //2 Assert Browser title
-        homePageSelenide.checkTitle(HOME_PAGE);
+        homePageSelenide.checkPageTitle(HOME_PAGE);
 
         //3 Perform login
         homePageSelenide.login(PITER_CHAILOVSKII);
 
         // TODO: rename method - done
         // 4 Assert User name in the left-top side of screen that user is loggined
-        homePageSelenide.checkUserIsLogged(PITER_CHAILOVSKII);
+        homePageSelenide.checkUserName(PITER_CHAILOVSKII);
 
         //5 Open through the header menu Service -> Dates Page
         //TODO: avoid to use huge names; better to rename method -> openDatesPage() or openServicePage(String page)
