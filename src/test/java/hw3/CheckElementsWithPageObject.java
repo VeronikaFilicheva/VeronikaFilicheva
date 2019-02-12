@@ -1,6 +1,7 @@
 package hw3;
 
 import base.SeleniumBase;
+import enums.NavBarElements;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -10,7 +11,6 @@ import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
 import static enums.HomePageData.HOME_PAGE;
-import static enums.NavBarElements.HEADER_ITEMS;
 import static enums.SubHeader.JDI_GITHUB;
 import static enums.TextsAboutBenefits.BENEFITS;
 import static enums.Users.PITER_CHAILOVSKII;
@@ -51,7 +51,7 @@ public class CheckElementsWithPageObject extends SeleniumBase {
         homePage.getTitle(HOME_PAGE);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper texts
-        homePage.checkNavBarElements(HEADER_ITEMS);
+        homePage.checkNavBarElements();
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         homePage.checkImagesDisplayed();

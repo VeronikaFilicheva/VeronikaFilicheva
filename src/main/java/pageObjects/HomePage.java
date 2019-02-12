@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static enums.NavBarElements.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -91,18 +92,12 @@ public class HomePage {
         assertEquals(driver.getTitle(), homePageData.title);
     }
 
-    public void checkNavBarElements(NavBarElements navBarElements) {
+    public void checkNavBarElements() {
         assertEquals(navBar.size(),4);
-
-        List<String> headerItems = new ArrayList<String>();
-        headerItems.add(navBarElements.home);
-        headerItems.add(navBarElements.contactForm);
-        headerItems.add(navBarElements.service);
-        headerItems.add(navBarElements.metalsAndColors);
 
         for (int i=0;i<navBar.size();i++ ) {
             assertTrue(navBar.get(i).isDisplayed());
-            assertEquals(navBar.get(i).getText(),headerItems.get(i));
+            assertEquals(navBar.get(i).getText(),getNavBarCategoriesList().get(i));
         }
 
     }

@@ -45,7 +45,7 @@ public class DifferentElementsPage {
     private ElementsCollection logs;
 
 
-    public void checkIfNeededElementsVisibleDifferentElementsPage() {
+    public void checkDifferentElementsPageElements() {
         differentElementsPageCheckboxes.shouldHaveSize(4).shouldHave(texts(String.valueOf(WATER), String.valueOf(EARTH), String.valueOf(WIND), String.valueOf(FIRE)));
         differentElementsPageRadioButtons.shouldHaveSize(4).shouldHave(texts(String.valueOf(GOLD), String.valueOf(SILVER), String.valueOf(BRONZE), String.valueOf(SELEN)));
         colorsDropdown.isDisplayed();
@@ -79,7 +79,6 @@ public class DifferentElementsPage {
         }
     }
 
-
     public void selectRadio(Radiobuttons... radiobuttons) {
         for(Radiobuttons radiobutton : radiobuttons){
             differentElementsPageRadioButtons.findBy(text(radiobutton.name)).click();
@@ -97,7 +96,7 @@ public class DifferentElementsPage {
         dropdownPositions.find(text(dropdown.color)).click();
     }
 
-    public void dropdownLogs(Dropdown... dropdowns) {
+    public void checkdropdownLogs(Dropdown... dropdowns) {
         for (Dropdown dropdown : dropdowns) {
             logsPanel.shouldBe(visible).shouldHave(text(String.valueOf(COLORS)+VALUE_CHANGED_TO+dropdown.color));
         }

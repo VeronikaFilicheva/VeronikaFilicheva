@@ -1,9 +1,7 @@
 package hw4;
 
 import base.SelenideBase;
-import enums.Checkboxes;
-import enums.Dropdown;
-import enums.Radiobuttons;
+import enums.*;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -14,6 +12,7 @@ import pageObjects.HomePageSelenide;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.HomePageData.HOME_PAGE;
+import static enums.NavBarElements.SERVICE;
 import static enums.ServiceCategories.HEADER_DIFFERENT_ELEMENTS;
 import static enums.Users.PITER_CHAILOVSKII;
 
@@ -37,27 +36,34 @@ public class ServicePageInterfaceCheck extends SelenideBase {
 
     @Test
     public void servicePageInterfaceCheck () {
-
+        //TODO; rename method - done
         //2 Assert Browser title
-        homePageSelenide.getTitle(HOME_PAGE);
+        homePageSelenide.checkTitle(HOME_PAGE);
 
         //3 Perform login
         homePageSelenide.login(PITER_CHAILOVSKII);
 
+        //TODO; rename method - done
         // 4 Assert User name in the left-top side of screen that user is loggined
-        homePageSelenide.userIsLogged(PITER_CHAILOVSKII);
+        homePageSelenide.checkUserIsLogged(PITER_CHAILOVSKII);
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
-        homePageSelenide.checkServiceHeaderContainsOptions();
+        //TODO; method should be parameterized - done
+        //TODO; rename method, e.g. checkServiceHeaderMenu - done
+        homePageSelenide.checkServiceHeaderMenu(SERVICE);
 
         //6 Click on Service subcategory in the left section and check that drop down contains options
-        homePageSelenide.checkServiceSubCategoryLeftSectionContainsOptions();
+        //TODO; method should be parameterized - done
+        //TODO; rename method - done
+        homePageSelenide.checkServiceLeftSectionMenu(LeftSection.SERVICE);
 
         //7 Open through the header menu Service -> Different Elements Page
-        homePageSelenide.openElementsViaHeaderServiceMenu(HEADER_DIFFERENT_ELEMENTS);
+        //TODO; rename method to short one - done
+        homePageSelenide.openServiceSubMenu(HEADER_DIFFERENT_ELEMENTS);
 
         //8 Check interface on Different elements page, it contains all needed elements
-        differentElementsPage.checkIfNeededElementsVisibleDifferentElementsPage();
+        //TODO; rename method to short one - done
+        differentElementsPage.checkDifferentElementsPageElements();
 
         //9 Assert that there is Right Section
         differentElementsPage.checkRightSection();
@@ -81,7 +87,8 @@ public class ServicePageInterfaceCheck extends SelenideBase {
         differentElementsPage.selectInDropdown(Dropdown.YELLOW);
 
         //16 Assert that for dropdown there is a log row and value is corresponded to the selected value.
-        differentElementsPage.dropdownLogs(Dropdown.YELLOW);
+        //TODO; rename method to "check...." - done
+        differentElementsPage.checkdropdownLogs(Dropdown.YELLOW);
 
         //17 Unselect and assert checkboxes (Water, Wind)
         differentElementsPage.selectCheckboxes(Checkboxes.WATER,Checkboxes.WIND);

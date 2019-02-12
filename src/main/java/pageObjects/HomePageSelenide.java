@@ -2,9 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.HomePageData;
-import enums.ServiceCategories;
-import enums.Users;
+import enums.*;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.*;
@@ -37,8 +35,8 @@ public class HomePageSelenide {
     @FindBy(css = "[class = 'dropdown open'] li")
     private ElementsCollection serviceDropdownElements;
 
-    @FindBy(css = "[class = 'sidebar-menu'] > [index = '3']")
-    private SelenideElement leftSideMenuElements;
+    @FindBy(css = "[class = 'sidebar-menu']")
+    private ElementsCollection leftSideMenuElements;
 
     @FindBy(css = "[class = 'sub'] li")
     private ElementsCollection serviceLeftSectionCategories;
@@ -52,23 +50,23 @@ public class HomePageSelenide {
             submitButton.click();
         }
 
-        public void openElementsViaHeaderServiceMenu(ServiceCategories serviceCategories) {
+        public void openServiceSubMenu(ServiceCategories serviceCategories) {
             navBarElements.get(2).click();
             serviceDropdownElements.find(text(serviceCategories.name)).click();
         }
 
     // Check Elements
-        public void getTitle (HomePageData homePageData) {
+        public void checkTitle (HomePageData homePageData) {
             assertEquals(getWebDriver().getTitle(),homePageData.title);
         }
 
-        public void userIsLogged(Users user) {
+        public void checkUserIsLogged(Users user) {
             loggedInUserName.isDisplayed();
             assertEquals(loggedInUserName.getText(), user.name);
         }
 
-        public void checkServiceHeaderContainsOptions() {
-            navBarElements.get(2).click();
+        public void checkServiceHeaderMenu(NavBarElements navBarElement) {
+            navBarElements.find(text(navBarElement.name)).click();
             serviceDropdownElements.shouldHaveSize(8);
             for (SelenideElement element : serviceDropdownElements) {
                  element.isDisplayed();
@@ -79,8 +77,8 @@ public class HomePageSelenide {
             }
         }
 
-        public void checkServiceSubCategoryLeftSectionContainsOptions() {
-            leftSideMenuElements.click();
+        public void checkServiceLeftSectionMenu(LeftSection leftSection) {
+            leftSideMenuElements.find(text(leftSection.name)).click();
             serviceLeftSectionCategories.shouldHaveSize(8);
             for (SelenideElement element : serviceLeftSectionCategories){
                  element.isDisplayed();

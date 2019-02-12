@@ -6,7 +6,9 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.Logs.*;
 
 
 public class DatesPage {
@@ -23,12 +25,20 @@ public class DatesPage {
     @FindBy(css = "div#mCSB_2_container li")
     private ElementsCollection logs;
 
-    public void checkLogs(String logFrom, String logTo) {
-        logs.get(1).should(Condition.text(logFrom + " link clicked"));
-        logs.get(0).should(Condition.text(logTo + " link clicked"));
+//TODO: make method more flexible, avoid to use indexes; try to use Java 8 streams - done
+   public void checkLogs(String logFrom, String logTo) {
+       for (SelenideElement element : logs) {
+           if (element.text().indexOf(logFrom)!=-1) {
+               element.shouldHave(Condition.text((logFrom + " link clicked"))); }
+       }
+       for (SelenideElement selenideElement : logs) {
+           if (selenideElement.text().indexOf(logTo)!=-1) {
+               selenideElement.shouldHave(Condition.text(logTo + " link clicked")); }
+       }
     }
 
-    public void moveSlder(int position1, int position2) {
+
+    public void  setSlidersPosition(int position1, int position2) {
         Actions builder = new Actions(getWebDriver());
         int to = (position1 - Integer.valueOf(sliderLeft.$("span").text())) * slider.getSize().width / 100 - 1;
         builder.clickAndHold(sliderLeft).moveByOffset(to, 0).release().build().perform();
