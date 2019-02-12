@@ -33,18 +33,23 @@ public class DataPageSlidersCheck extends SelenideBase {
     public void dataPageSlidersCheck() {
 
         //2 Assert Browser title
+        //TODO: rename method; get() tells that we should GET some data from object;
+        //e.g. checkPageTitle(String title);
         homePageSelenide.getTitle(HOME_PAGE);
 
         //3 Perform login
         homePageSelenide.login(PITER_CHAILOVSKII);
 
         // 4 Assert User name in the left-top side of screen that user is loggined
+        // TODO: rename method
         homePageSelenide.userIsLogged(PITER_CHAILOVSKII);
 
         //5 Open through the header menu Service -> Dates Page
+        //TODO: avoid to use huge names; better to rename method -> openDatesPage() or openServicePage(String page)
         homePageSelenide.openElementsViaHeaderServiceMenu(ServiceCategories.HEADER_DATES);
 
         //6 Using drag-and-drop set Range sliders. left sliders - the most left position, right slider - the most rigth position
+        //TODO: rename, e.g. setSlidersPosition
         datesPage.moveSlder(0,100);
 
         //7 Assert that for "From" and "To" sliders there are logs rows with corresponding values

@@ -39,23 +39,31 @@ public class ServicePageInterfaceCheck extends SelenideBase {
     public void servicePageInterfaceCheck () {
 
         //2 Assert Browser title
+        //TODO; rename method
         homePageSelenide.getTitle(HOME_PAGE);
 
         //3 Perform login
         homePageSelenide.login(PITER_CHAILOVSKII);
 
         // 4 Assert User name in the left-top side of screen that user is loggined
+        //TODO; rename method
         homePageSelenide.userIsLogged(PITER_CHAILOVSKII);
 
         //5 Click on "Service" subcategory in the header and check that drop down contains options
+        //TODO; method should be parameterized
+        //TODO; rename method, e.g. checkServiceHeaderMenu
         homePageSelenide.checkServiceHeaderContainsOptions();
 
         //6 Click on Service subcategory in the left section and check that drop down contains options
+        //TODO; method should be parameterized
+        //TODO; rename method
         homePageSelenide.checkServiceSubCategoryLeftSectionContainsOptions();
 
         //7 Open through the header menu Service -> Different Elements Page
+        //TODO; rename method to short one
         homePageSelenide.openElementsViaHeaderServiceMenu(HEADER_DIFFERENT_ELEMENTS);
 
+        //TODO; rename method to short one
         //8 Check interface on Different elements page, it contains all needed elements
         differentElementsPage.checkIfNeededElementsVisibleDifferentElementsPage();
 
@@ -81,6 +89,7 @@ public class ServicePageInterfaceCheck extends SelenideBase {
         differentElementsPage.selectInDropdown(Dropdown.YELLOW);
 
         //16 Assert that for dropdown there is a log row and value is corresponded to the selected value.
+        //TODO; rename method to "check...."
         differentElementsPage.dropdownLogs(Dropdown.YELLOW);
 
         //17 Unselect and assert checkboxes (Water, Wind)

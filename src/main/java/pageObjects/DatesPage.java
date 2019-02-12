@@ -23,6 +23,7 @@ public class DatesPage {
     @FindBy(css = "div#mCSB_2_container li")
     private ElementsCollection logs;
 
+    //TODO: make method more flexible, avoid to use indexes; try to use Java 8 streams
     public void checkLogs(String logFrom, String logTo) {
         logs.get(1).should(Condition.text(logFrom + " link clicked"));
         logs.get(0).should(Condition.text(logTo + " link clicked"));
