@@ -38,7 +38,7 @@ public class SimpleTestWithAnnotations {
     public void simpleTest() {
 
         //2
-        driver.navigate().to("https://e6pam.github.io/JDI/index.html");
+        driver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //3
         assertEquals(driver.getTitle(), "Home Page");
