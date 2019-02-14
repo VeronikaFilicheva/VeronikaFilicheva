@@ -6,6 +6,7 @@ import enums.Dropdown;
 import enums.LeftSection;
 import enums.Radiobuttons;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
 import org.testng.annotations.AfterMethod;
@@ -22,9 +23,9 @@ import static enums.ServiceCategories.HEADER_DIFFERENT_ELEMENTS;
 import static enums.Users.PITER_CHAILOVSKII;
 
 @Feature("Smoke tests")
-@Story("Service Page Interface test")
+@Story("Service Page Interface test with issues")
 @Listeners(AllureAttachmentListener.class)
-public class ServicePageInterfaceCheck extends SelenideBase {
+public class ServicePageInterfaceCheckFail extends SelenideBase {
 
     private HomePageSelenide homePageSelenide;
     private DifferentElementsPage differentElementsPage;
@@ -41,6 +42,7 @@ public class ServicePageInterfaceCheck extends SelenideBase {
     @AfterMethod
     public void closeTest(){ close();}
 
+    @Issue("Setting radiobutton to (BRONZE) at step 13 cause a bug")
     @Test
     public void servicePageInterfaceCheck () {
         //2 Assert Browser title
@@ -77,7 +79,7 @@ public class ServicePageInterfaceCheck extends SelenideBase {
         differentElementsPage.checkLogsForCheckboxes(Checkboxes.WATER,Checkboxes.WIND);
 
         //13 Select radio (Selen)
-        differentElementsPage.selectRadio(Radiobuttons.SELEN);
+        differentElementsPage.selectRadio(Radiobuttons.BRONZE);
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton
         differentElementsPage.checkLogsForRadiobuttons(Radiobuttons.SELEN);

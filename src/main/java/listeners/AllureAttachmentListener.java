@@ -10,7 +10,7 @@ import org.testng.TestListenerAdapter;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class AllureAttachmentListener extends TestListenerAdapter {
-    @Attachment(value = "Attachment: {0}", type = "image/png")
+    @Attachment(value = "Attachment", type = "image/png")
     public byte[] makeScreenshot() {
         byte[] array = {1};
         try {
