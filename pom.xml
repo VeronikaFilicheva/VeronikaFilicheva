@@ -8,7 +8,10 @@
     <artifactId>VeronikaFilicheva</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-   
+    <properties>
+        <aspectj.version>1.8.10</aspectj.version>
+    </properties>
+
 <dependencies>
 
     <dependency>
@@ -110,7 +113,7 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\testing.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\hw5testing.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/1.8.12/aspectjweaver-1.8.12.jar"
