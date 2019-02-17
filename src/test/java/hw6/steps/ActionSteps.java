@@ -1,12 +1,13 @@
 package hw6.steps;
 
-import cucumber.api.java.en.Then;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import enums.hw6.Dropdown;
 import enums.hw6.Radiobuttons;
 import enums.hw6.User;
 import pageObjects.hw6.DifferentElementsPage;
 import pageObjects.hw6.HomePageSelenide;
+import pageObjects.hw6.UserTablePage;
 
 import static enums.hw6.Checkboxes.getCheckboxByName;
 
@@ -36,4 +37,25 @@ public class ActionSteps {
     public void unselectCheckboxes(String checkbox1, String checkbox2) {
         new DifferentElementsPage().selectCheckboxes(getCheckboxByName(checkbox1),getCheckboxByName(checkbox2));
     }
+
+    @When("I click on \"(.+)\" button in Header")
+    public void openSubMenu(String subMenu) {
+        new HomePageSelenide().openSubMenu(subMenu.toUpperCase());
+    }
+
+    @And("I click on \"(.+)\" button in Service dropdown")
+    public void openUserTablePage(String buttonName) {
+        new HomePageSelenide().openServiceSubMenu(buttonName.toUpperCase());
+    }
+
+    @When("I select 'vip' checkbox for \"(.+)\"")
+    public void selectCheckbox(String name) {
+        new UserTablePage().selectVipCheckbox(name);
+    }
+
+    @When("^I click on dropdown in column Type for user Roman$")
+    public void iClickOnDropdownInColumnTypeForUserRoman() {
+        new UserTablePage().iClickOnDropdownForRoman();
+    }
+
 }

@@ -9,6 +9,7 @@ import enums.hw6.Radiobuttons;
 import enums.hw6.User;
 import pageObjects.hw6.DifferentElementsPage;
 import pageObjects.hw6.HomePageSelenide;
+import pageObjects.hw6.UserTablePage;
 
 import static com.codeborne.selenide.Condition.text;
 import static enums.hw6.Checkboxes.getCheckboxByName;
@@ -56,7 +57,7 @@ public class AssertionSteps {
     }
 
     @Then("([^\"]*) and ([^\"]*) checkboxes should have individual log row and value is corresponded to the status of checkbox")
-    public void checkChexboxesLogs(String checkbox1, String checkbox2) {
+    public void checkCheckboxesLogs(String checkbox1, String checkbox2) {
         new DifferentElementsPage().checkLogsForCheckboxes(getCheckboxByName(checkbox1),getCheckboxByName(checkbox2));
     }
 
@@ -75,5 +76,49 @@ public class AssertionSteps {
         new DifferentElementsPage().checkLogsForCheckboxes(getCheckboxByName(checkbox1),getCheckboxByName(checkbox2));
     }
 
+    @Then("\"User Table\" page is opened")
+    public void userTablePageTitleShouldBe() {
+        new UserTablePage().checkTitle();
+    }
+
+    @And("(.+) NumberType Dropdowns are displayed on Users Table on User Table Page")
+    public void checkDropdowns(int amount) {
+        new UserTablePage().checkDropdowns(amount);
+    }
+
+    @And("(.+) User names are displayed on Users Table on User Table Page")
+    public void checkUserNames(int amountNames) {
+        new UserTablePage().checkNames(amountNames);
+    }
+
+    @And("(.+) Description images are displayed on Users Table on User Table Page")
+    public void checkImages(int amountNames) {
+        new UserTablePage().checkImages(amountNames);
+    }
+
+    @And("(.+) Description texts under images are displayed on Users Table on User Table Page")
+    public void checkTexts(int amountTexts) {
+        new UserTablePage().checkTexts(amountTexts);
+    }
+
+    @And("(.+) checkboxes are displayed on Users Table on User Table Page")
+    public void checkCheckboxes(int amountCheckboxes) {
+        new UserTablePage().checkCheckBoxes(amountCheckboxes);
+    }
+
+    @And("User table contains following values:")
+    public void checkUserTable(DataTable userTable) {
+        new UserTablePage().checkUserTableValues(userTable);
+    }
+
+    @Then("(.+) log row has \"(.+)\" text in log section")
+    public void checkLogForVip(int index, String logRow) {
+        new UserTablePage().logRowHasTextInLogSection(index,logRow);
+    }
+
+    @Then("^droplist contains values$")
+    public void droplistContainsValues(DataTable dataTable) {
+        new UserTablePage().checkDroplist(dataTable);
+    }
 
 }

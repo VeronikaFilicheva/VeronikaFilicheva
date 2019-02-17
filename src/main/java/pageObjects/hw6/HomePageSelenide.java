@@ -130,9 +130,12 @@ public class HomePageSelenide {
             serviceLeftSection.shouldHave(textsInAnyOrder(leftSectionList));
          }
 
-         public void openServiceSubMenu(String subMenu) {
-            navBarElements.get(2).click();
-            serviceDropdownElements.find(text(subMenu)).click();
+         public void openServiceSubMenu(String menu) {
+            serviceDropdownElements.find(text(menu.toUpperCase())).click();
+         }
+
+         public void openSubMenu(String subMenu) {
+             navBarElements.find(text(subMenu)).click();
          }
 
     }
