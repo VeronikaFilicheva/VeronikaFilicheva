@@ -42,8 +42,8 @@ public class DifferentElementsPageSteps {
     }
 
     @When("^I select ratio (.+)$")
-    public void selectRadio(String ratdoName){
-        differentElementsPage.selectRadio(Radiobuttons.getRadiobuttonByName(ratdoName));
+    public void selectRadio(String radioName){
+        differentElementsPage.selectRadio(Radiobuttons.getRadiobuttonByName(radioName));
     }
 
     @Then("The log should have individual entry with value which is corresponded to the status of the radiobutton (.+)")
