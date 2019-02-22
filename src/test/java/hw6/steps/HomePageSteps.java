@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class HomePageSteps {
 
-    public HomePageSelenide homePage = page(HomePageSelenide.class);
+    private HomePageSelenide homePage = page(HomePageSelenide.class);
 
     @Given("^I am on \"Home Page\"$")
     @Then("^Browser title should be 'Home Page'$")

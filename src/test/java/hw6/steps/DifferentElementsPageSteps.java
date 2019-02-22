@@ -1,7 +1,6 @@
 package hw6.steps;
 
 import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.hw6.Dropdown;
@@ -12,7 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 import static enums.hw6.Checkboxes.getCheckboxByName;
 
 public class DifferentElementsPageSteps {
-    
+
     private DifferentElementsPage differentElementsPage = page(DifferentElementsPage.class);
 
     @Then("^Different elements page interface contains all needed elements$")

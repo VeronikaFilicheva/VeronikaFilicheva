@@ -67,7 +67,6 @@ public class HomePageSelenide {
     // methods
          public void openPage(HomePageData homePageData){
              open(homePageData.navigateTo);
-
          }
 
          public void checkPageTitle (HomePageData homePageData) {
