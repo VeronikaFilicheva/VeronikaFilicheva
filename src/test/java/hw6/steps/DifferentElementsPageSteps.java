@@ -7,6 +7,9 @@ import enums.hw6.Dropdown;
 import enums.hw6.Radiobuttons;
 import pageObjects.hw6.DifferentElementsPage;
 
+
+import java.util.List;
+
 import static com.codeborne.selenide.Selenide.page;
 import static enums.hw6.Checkboxes.getCheckboxByName;
 
@@ -29,14 +32,14 @@ public class DifferentElementsPageSteps {
         differentElementsPage.checkLeftSection();
     }
 
-    @When("^I select checkboxes ([^\"]*) and ([^\"]*)$")
-    public void selectCheckboxes(String checkboxWind, String checkboxWater) {
-        differentElementsPage.selectCheckboxes(getCheckboxByName(checkboxWind),getCheckboxByName(checkboxWater));
+    @When("^I select checkboxes (.+)$")
+    public void selectCheckboxes(List<String> checkboxes) {
+        differentElementsPage.selectCheckboxes(checkboxes);
     }
 
-    @Then("([^\"]*) and ([^\"]*) checkboxes should have individual log row and value is corresponded to the status of checkbox")
-    public void checkCheckboxesLogs(String checkboxWind, String checkboxWater) {
-        differentElementsPage.checkLogsForCheckboxes(getCheckboxByName(checkboxWind),getCheckboxByName(checkboxWater));
+    @Then("(.+) checkboxes should have individual log row and value is corresponded to the status of checkbox")
+    public void checkCheckboxesLogs(List<String> checkboxes) {
+        differentElementsPage.checkLogsForCheckboxes(checkboxes);
     }
 
     @When("^I select ratio (.+)$")
@@ -59,14 +62,14 @@ public class DifferentElementsPageSteps {
         differentElementsPage.checkdropdownLogs(Dropdown.getDropdownByName(dropdownName));
     }
 
-    @When("^I unselect checkboxes ([^\"]*) and ([^\"]*)$")
-    public void unselectCheckboxes(String checkboxWind, String checkboxWater) {
-        differentElementsPage.selectCheckboxes(getCheckboxByName(checkboxWind),getCheckboxByName(checkboxWater));
+    @When("^I unselect checkboxes (.+)$")
+    public void unselectCheckboxes(List<String> checkboxes) {
+        differentElementsPage.selectCheckboxes(checkboxes);
     }
 
-    @Then("The log should have individual entry with value which is corresponded to the status of the (.+) and (.+) checkboxes")
-    public void checkUnselectedCheckboxesLogs(String checkboxWind, String checkboxWater) {
-        differentElementsPage.checkLogsForCheckboxes(getCheckboxByName(checkboxWind),getCheckboxByName(checkboxWater));
+    @Then("The log should have individual entry with value which is corresponded to the status of the (.+) checkboxes")
+    public void checkUnselectedCheckboxesLogs(List<String> checkboxes) {
+        differentElementsPage.checkLogsForCheckboxes(checkboxes);
     }
 
 }

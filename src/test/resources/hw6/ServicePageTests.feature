@@ -28,13 +28,13 @@ Feature: Service Page tests
     Then Different elements page interface contains all needed elements
     And There is Right Section
     And There is Left Section
-    When I select checkboxes Wind and Water
+    When I select checkboxes Wind, Water
     Then Wind and Water checkboxes should have individual log row and value is corresponded to the status of checkbox
     When I select ratio Selen
     Then The log should have individual entry with value which is corresponded to the status of the radiobutton Selen
     When I select Yellow in dropdown
     Then The log should have individual entry with value about selected Yellow color
-    When I unselect checkboxes Wind and Water
+    When I unselect checkboxes Wind, Water
     Then The log should have individual entry with value which is corresponded to the status of the Wind and Water checkboxes
 
 

@@ -8,6 +8,8 @@ import enums.hw6.Dropdown;
 import enums.hw6.Radiobuttons;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.page;
@@ -62,18 +64,18 @@ public class DifferentElementsPage {
         leftSection.isDisplayed();
     }
 
-    public void selectCheckboxes(Checkboxes... checkboxes) {
-        for (Checkboxes checkbox : checkboxes) {
-            differentElementsPageCheckboxes.findBy(text(checkbox.checkboxesName)).click();
+    public void selectCheckboxes(List<String> checkboxesList) {
+        for ( String checkbox : checkboxesList) {
+            differentElementsPageCheckboxes.findBy(text(checkbox)).click();
         }
     }
 
-    public void checkLogsForCheckboxes(Checkboxes... checkboxes) {
-        for (Checkboxes checkbox : checkboxes) {
+    public void checkLogsForCheckboxes(List<String> checkboxesList) {
+        for (String checkbox : checkboxesList) {
             for (SelenideElement element : differentElementsPageCheckboxes) {
-                if (element.parent().text().equals(checkbox.checkboxesName))
+                if (element.parent().text().equals(checkbox))
                     for (SelenideElement selenideElement : logs) {
-                        selenideElement.shouldHave(Condition.text(checkbox.checkboxesName + ": condition changed to " + element.isSelected()));
+                        selenideElement.shouldHave(Condition.text(checkbox + ": condition changed to " + element.isSelected()));
                     }
             }
         }
