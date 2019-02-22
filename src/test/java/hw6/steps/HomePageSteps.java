@@ -10,7 +10,6 @@ import enums.hw6.User;
 import pageObjects.hw6.HomePageSelenide;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 
 public class HomePageSteps {
@@ -52,5 +51,20 @@ public class HomePageSteps {
     public void iOnDifferentElementsPage(String subCategory){
         homePage.openSubMenu("SERVICE");
         homePage.openServiceSubMenu(subCategory);
+    }
+
+    @And("I login as user \"(.+)\"")
+    public void login(String userName) {
+        homePage.login(User.getUserByUserName(userName.toUpperCase()));
+    }
+
+    @When("I click on \"(.+)\" button in Header")
+    public void openSubMenu(String subMenu) {
+        homePage.openSubMenu(subMenu.toUpperCase());
+    }
+
+    @And("I click on \"(.+)\" button in Service dropdown")
+    public void openUserTablePage(String buttonName) {
+        homePage.openServiceSubMenu(buttonName.toUpperCase());
     }
 }

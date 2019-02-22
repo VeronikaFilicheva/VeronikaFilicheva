@@ -12,6 +12,7 @@ import static com.codeborne.selenide.Selenide.page;
 import static enums.hw6.Checkboxes.getCheckboxByName;
 
 public class DifferentElementsPageSteps {
+    
     private DifferentElementsPage differentElementsPage = page(DifferentElementsPage.class);
 
     @Then("^Different elements page interface contains all needed elements$")
