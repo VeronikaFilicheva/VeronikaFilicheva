@@ -51,24 +51,24 @@ public class UserTablePage {
         assertEquals(getWebDriver().getTitle(),"User Table");
     }
 
-    public void checkDropdowns(int amountOfDropdowns) {
-        dropdowns.shouldHaveSize(amountOfDropdowns);
+    public void checkDropdowns(int dropdownsCount) {
+        dropdowns.shouldHaveSize(dropdownsCount);
     }
 
-    public void checkNames(int amountOfNames) {
-        userNames.shouldHaveSize(amountOfNames);
+    public void checkNames(int namesCount) {
+        userNames.shouldHaveSize(namesCount);
     }
 
-    public void checkImages(int amountOfImages) {
-        images.shouldHaveSize(amountOfImages);
+    public void checkImages(int imagesCount) {
+        images.shouldHaveSize(imagesCount);
     }
 
-    public void checkTexts(int amountOfTexts) {
-        texts.shouldHaveSize(amountOfTexts);
+    public void checkTexts(int textsCount) {
+        texts.shouldHaveSize(textsCount);
     }
 
-    public void checkCheckBoxes(int amountCheckboxes) {
-        checkboxes.shouldHaveSize(amountCheckboxes);
+    public void checkCheckBoxes(int checkboxesCount) {
+        checkboxes.shouldHaveSize(checkboxesCount);
 
     }
 
@@ -81,12 +81,12 @@ public class UserTablePage {
         }
     }
 
-    public void selectVipCheckbox(String name) {
-        VIPcheckboxes.findBy(id(getUserIdByName(name))).click();
+    public void selectVipCheckbox(String userName) {
+        VIPcheckboxes.findBy(id(getUserIdByName(userName))).click();
     }
 
-    public void logRowHasTextInLogSection(int numberOfRows, String text) {
-        logs.shouldHaveSize(numberOfRows);
+    public void logRowHasTextInLogSection(int logIndex, String text) {
+        logs.shouldHaveSize(logIndex);
         logs.shouldHave(texts(text));
     }
 
