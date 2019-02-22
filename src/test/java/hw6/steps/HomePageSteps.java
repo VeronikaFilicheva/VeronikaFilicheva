@@ -5,11 +5,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import enums.HomePageData;
+
 import enums.hw6.User;
 import pageObjects.hw6.HomePageSelenide;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 
 public class HomePageSteps {
@@ -17,9 +18,13 @@ public class HomePageSteps {
     private HomePageSelenide homePage = page(HomePageSelenide.class);
 
     @Given("^I am on \"Home Page\"$")
-    @Then("^Browser title should be 'Home Page'$")
-    public void homePageTitleShouldBe(){
-        homePage.checkPageTitle(HomePageData.HOME_PAGE);
+    public void openHomePage() {
+        open("https://epam.github.io/JDI/index.html");
+    }
+
+    @Then("^Browser title should be \"(.+)\"$")
+    public void homePageTitleShouldBe(String homePageTitle){
+        homePage.checkPageTitle(homePageTitle);
     }
 
     @When("^I login as user '([^\"]*)'$")

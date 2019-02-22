@@ -69,8 +69,8 @@ public class HomePageSelenide {
              open(homePageData.navigateTo);
          }
 
-         public void checkPageTitle (HomePageData homePageData) {
-            assertEquals(getWebDriver().getTitle(),homePageData.title);
+         public void checkPageTitle (String homePageTitle) {
+            assertEquals(getWebDriver().getTitle(),homePageTitle);
          }
 
          public SelenideElement getUserName() {
