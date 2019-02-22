@@ -7,11 +7,10 @@ import enums.hw6.Dropdown;
 import enums.hw6.Radiobuttons;
 import pageObjects.hw6.DifferentElementsPage;
 
-
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.hw6.Checkboxes.getCheckboxByName;
+
 
 public class DifferentElementsPageSteps {
 

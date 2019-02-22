@@ -3,7 +3,6 @@ package pageObjects.hw6;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.hw6.Checkboxes;
 import enums.hw6.Dropdown;
 import enums.hw6.Radiobuttons;
 import org.openqa.selenium.support.FindBy;
