@@ -5,7 +5,6 @@ import com.epam.jdi.light.elements.pageobjects.annotations.FindBy;
 import jdi.data.MetalColor;
 import jdi.enums.Vegetables;
 import jdi.site.forms.MetalsAndColorsForm;
-import jdi.site.sections.ResultSection;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
@@ -18,10 +17,7 @@ public class MetalsAndColors extends WebPage {
     private MetalsAndColorsForm metalColorForm;
 
     @FindBy(css = ".results li")
-    private List<WebElement> res;
-
-
-
+    private List<WebElement> resultLog;
 
     public void fillForm(MetalColor data) {
         selectSummary(data.summary);
@@ -65,9 +61,8 @@ public class MetalsAndColors extends WebPage {
 
     public void check(MetalColor data) {
         for (int i=0;i<data.result().length;i++) {
-            assertEquals(res.get(i).getText(),data.result()[i]);
+            assertEquals(resultLog.get(i).getText(),data.result()[i]);
         }
     }
-
 
 }

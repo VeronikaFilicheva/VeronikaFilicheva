@@ -15,6 +15,7 @@ public class SubmitMetalsAndColorsForm extends JDITestsInit {
 
     @Test
     public void simpleJdiTest() {
+
         //1. Login on jdi site as User
         homepage.open();
         homepage.login(PITER_CHAILOVSKII);
@@ -31,9 +32,6 @@ public class SubmitMetalsAndColorsForm extends JDITestsInit {
 
         //5 Result sections should contains data  below
         metalsAndColors.check(data);
-
-
-
 
     }
 
