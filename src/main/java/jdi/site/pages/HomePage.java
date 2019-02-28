@@ -14,7 +14,7 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class HomePage extends WebPage {
 
-    LoginForm loginForm;
+    private LoginForm loginForm;
     public static Header header;
 
     @FindBy(css = "[id='user-icon']")

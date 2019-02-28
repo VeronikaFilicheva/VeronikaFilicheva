@@ -27,34 +27,6 @@ public class MetalsAndColors extends WebPage {
         selectVegetables(data.vegetables);
     }
 
-    public void selectSummary(int[] summaryArr) {
-        metalColorForm.summary.setOddsSummary(summaryArr[0]);
-        metalColorForm.summary.setEvenSummary(summaryArr[1]);
-    }
-
-
-    public void selectVegetables(String... vegetable) {
-        vegetables.select(Vegetables.VEGETABLES);
-        for (String element : vegetable) {
-            vegetables.select(element);
-        }
-    }
-
-    public void selectColors(String color) {
-        colors.select(color);
-    }
-
-    public void selectElements(String... checkboxes) {
-        for (String element : checkboxes) {
-            metalColorForm.checklist.check(element);
-            metalColorForm.checklist.select(element);
-        }
-    }
-
-    public void selectMetals(String metal) {
-        metals.select(metal);
-    }
-
     public void clickSubmitButton() {
         submit.click();
     }
@@ -63,6 +35,34 @@ public class MetalsAndColors extends WebPage {
         for (int i=0;i<data.result().length;i++) {
             assertEquals(resultLog.get(i).getText(),data.result()[i]);
         }
+    }
+
+    private void selectSummary(int[] summaryArr) {
+        metalColorForm.summary.setOddsSummary(summaryArr[0]);
+        metalColorForm.summary.setEvenSummary(summaryArr[1]);
+    }
+
+
+    private void selectVegetables(String... vegetable) {
+        vegetables.select(Vegetables.VEGETABLES);
+        for (String element : vegetable) {
+            vegetables.select(element);
+        }
+    }
+
+    private void selectColors(String color) {
+        colors.select(color);
+    }
+
+    private void selectElements(String... checkboxes) {
+        for (String element : checkboxes) {
+            metalColorForm.checklist.check(element);
+            metalColorForm.checklist.select(element);
+        }
+    }
+
+    private void selectMetals(String metal) {
+        metals.select(metal);
     }
 
 }
