@@ -12,7 +12,6 @@ public class JDITestsInit {
     @BeforeSuite(alwaysRun = true)
     public static void setUp() {
         initElements(JDITestSite.class);
-
     }
 
     @AfterSuite

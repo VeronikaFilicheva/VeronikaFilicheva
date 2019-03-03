@@ -11,7 +11,6 @@ public class TestInitJDI8 {
     @BeforeSuite(alwaysRun = true)
     public static void setUp() {
         initElements(JDITestSite.class);
-
     }
 
     @AfterMethod
