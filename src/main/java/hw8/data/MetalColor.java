@@ -1,11 +1,11 @@
-package jdi.data;
+package hw8.data;
 
 public class MetalColor {
-    public int[] summary;
-    public String[] elements;
-    public String color;
-    public String metals;
-    public String[] vegetables;
+    public int[] summary = {3,8};
+    public String[] elements = {"Water", "Fire"};
+    public String color = "Red";
+    public String metals = "Selen";
+    public String[] vegetables = {"Cucumber","Tomato"};
 
     public String[] result() {
         String[] res = new String[5];
