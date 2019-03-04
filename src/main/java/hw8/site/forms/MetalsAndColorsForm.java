@@ -11,6 +11,7 @@ import com.epam.jdi.light.ui.html.complex.Checklist;
 import org.openqa.selenium.By;
 
 
+// TODO Code convention !!
 public class MetalsAndColorsForm {
 
     public Summary summary;

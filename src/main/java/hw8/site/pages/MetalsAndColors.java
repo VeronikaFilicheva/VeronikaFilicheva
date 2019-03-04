@@ -12,7 +12,7 @@ import java.util.List;
 import static hw8.site.forms.MetalsAndColorsForm.*;
 import static org.testng.Assert.assertEquals;
 
-
+// TODO Java code convention !
 public class MetalsAndColors extends WebPage {
     private MetalsAndColorsForm metalColorForm;
 
@@ -20,6 +20,7 @@ public class MetalsAndColors extends WebPage {
     private List<WebElement> resultLog;
 
     public void fillForm(MetalColor data) {
+        // TODO All internal actions with form should be encapsulated in form class
         selectSummary(data.summary);
         selectElements(data.elements);
         selectColors(data.color);
