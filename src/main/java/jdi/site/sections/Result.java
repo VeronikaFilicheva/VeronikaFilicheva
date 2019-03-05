@@ -2,7 +2,7 @@ package jdi.site.sections;
 
 import com.epam.jdi.light.elements.composite.Section;
 import com.epam.jdi.light.elements.pageobjects.annotations.FindBy;
-import hw8.data.MetalColor;
+import jdi.data.MetalColor;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;

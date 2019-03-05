@@ -8,10 +8,13 @@ import com.epam.jdi.light.ui.html.base.HtmlChecklist;
 import com.epam.jdi.light.ui.html.base.HtmlElement;
 import com.epam.jdi.light.ui.html.common.Button;
 import com.epam.jdi.light.ui.html.complex.Checklist;
+import jdi.data.MetalColor;
+import jdi.enums.Vegetables;
 import org.openqa.selenium.By;
 
 
 public class MetalsAndColorsForm {
+    public MetalColor data = new MetalColor();
 
     public Summary summary;
 
@@ -47,4 +50,42 @@ public class MetalsAndColorsForm {
     @ByText("Submit")
     public static Button submit;
 
+    public void fillForm(MetalColor data) {
+        selectSummary(data.summary);
+        selectElements(data.elements);
+        selectColors(data.color);
+        selectMetals(data.metals);
+        selectVegetables(data.vegetables);
+    }
+
+    public void clickSubmitButton() {
+        submit.click();
+    }
+
+    private void selectSummary(int[] summaryArr) {
+        summary.setOddsSummary(summaryArr[0]);
+        summary.setEvenSummary(summaryArr[1]);
+    }
+
+    private void selectVegetables(String... vegetable) {
+        vegetables.select(Vegetables.VEGETABLES);
+        for (String element : vegetable) {
+            vegetables.select(element);
+        }
+    }
+
+    private void selectColors(String color) {
+        colors.select(color);
+    }
+
+    private void selectElements(String... checkboxes) {
+        for (String element : checkboxes) {
+            checklist.check(element);
+            checklist.select(element);
+        }
+    }
+
+    private void selectMetals(String metal) {
+        metals.select(metal);
+    }
 }
