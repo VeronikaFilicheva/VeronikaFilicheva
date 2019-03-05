@@ -17,19 +17,19 @@ public class MetalsAndColorsForm {
 
     @FindBy(css = "p input[type='checkbox']")
     public Checklist checklist = new HtmlChecklist() {
-    @Override
-    public void select(String... names) {
-        for (String name : names) {
-            HtmlElement value = get(name);
-            value.setLocator(By.cssSelector(correctLocator(value.locator.toString())));
-            if (value.isEnabled())
-                value.click();
+        @Override
+        public void select(String... names) {
+            for (String name : names) {
+                HtmlElement value = get(name);
+                value.setLocator(By.cssSelector(correctLocator(value.locator.toString())));
+                if (value.isEnabled())
+                    value.click();
+            }
         }
-    }
 
-    private String correctLocator(String wrongLocator){
-        return wrongLocator.substring(5,wrongLocator.length() - 1)+ " + *";
-    }
+        private String correctLocator(String wrongLocator) {
+            return wrongLocator.substring(5, wrongLocator.length() - 1) + " + *";
+        }
     };
 
     @JDropdown(root = "div[ui=dropdown]", value = ".filter-option",
@@ -44,7 +44,7 @@ public class MetalsAndColorsForm {
     @JDropdown(root = "#salad-dropdown", value = ".dropdown-toggle", list = "li", expand = ".caret")
     public static Droplist vegetables;
 
-    @ByText("Submit") public static Button submit;
-
+    @ByText("Submit")
+    public static Button submit;
 
 }

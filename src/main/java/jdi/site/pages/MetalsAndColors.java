@@ -32,8 +32,8 @@ public class MetalsAndColors extends WebPage {
     }
 
     public void check(MetalColor data) {
-        for (int i=0;i<data.result().length;i++) {
-            assertEquals(resultLog.get(i).getText(),data.result()[i]);
+        for (int i = 0; i < data.result().length; i++) {
+            assertEquals(resultLog.get(i).getText(), data.result()[i]);
         }
     }
 

@@ -10,10 +10,10 @@ import static jdi.enums.Radiobuttons.getValueOf;
 
 public class Summary extends Form {
     @FindBy(css = "#odds-selector .radio")
-    public RadioButtons oddsSummary;
+    private RadioButtons oddsSummary;
 
     @FindBy(css = "#even-selector .radio")
-    public RadioButtons evenSummary;
+    private RadioButtons evenSummary;
 
     public void setOddsSummary(int oddSummary) {
         this.oddsSummary.select(Objects.requireNonNull(getValueOf(oddSummary)));

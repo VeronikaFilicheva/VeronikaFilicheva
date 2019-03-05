@@ -3,7 +3,6 @@ package hw8.site.pages;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.FindBy;
 import com.epam.jdi.light.ui.html.common.Icon;
-import com.epam.jdi.light.ui.html.common.Link;
 import com.epam.jdi.light.ui.html.complex.Menu;
 import hw8.entities.User;
 import hw8.enums.MenuEnum;
@@ -20,9 +19,6 @@ public class HomePage extends WebPage {
     @FindBy(css = "[id='user-icon']")
     private Icon loginIcon;
 
-    @FindBy(css = "[class = 'uui-navigation nav navbar-nav m-l8'] [href='metals-colors.html']")
-    public Link MetalsAndColors;
-
     @FindBy(xpath = "//ul[@class='sidebar-menu'] //span[text()='%s']")
     public Menu menu;
 
@@ -38,7 +34,6 @@ public class HomePage extends WebPage {
     public void checkLoggedUser(User user) {
         assertEquals(header.profilePhoto.getText(), user.getUserName());
     }
-
 
 }
 

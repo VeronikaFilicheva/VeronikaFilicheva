@@ -10,5 +10,6 @@ public class JDITestSite {
     @Url("index.html")
     public static HomePage homepage;
     public static MetalsAndColors metalsAndColors;
+
 }
 
