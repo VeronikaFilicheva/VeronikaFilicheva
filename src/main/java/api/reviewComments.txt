@@ -2,7 +2,7 @@
 Исправила: кейсы checkUnknownWordError, checkDefaultLanguageSettings
 
 2. хотелось бы увидеть, кроме проверок на Contains/not contains, проверку стаус кода и проверку по xpath
-Добавила во все кейсы проверку на статус код, и в кейс checkUnknownWordError assertion c Xpath
+Добавила во все кейсы проверку на статус код, и в кейсы checkUnknownWordError,checkRequestWithMultipleLines assertion c Xpath
 
 ***пожелания***
 3. кейс checkOptionToIgnoreDigits тоже хороший кандидат на DDT
