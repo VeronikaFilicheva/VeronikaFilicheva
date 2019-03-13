@@ -1,15 +1,21 @@
 1. неверно сделан запуск для DDT, т.к степ запускается только один раз. Необходимо, чтобы запуск проходил counter раз - Юля напишет подсказку
-Исправила: кейсы checkUnknownWordError, checkDefaultLanguageSettings
+Исправила: кейсы checkUnknownWordError, checkDefaultLanguageSettings 
+ОТВЕТ: +
 
 2. хотелось бы увидеть, кроме проверок на Contains/not contains, проверку стаус кода и проверку по xpath
 Добавила во все кейсы проверку на статус код, и в кейсы checkUnknownWordError,checkRequestWithMultipleLines assertion c Xpath
 
+ОТВЕТ: очень большая проверка внутри xpth ***<error code="1" pos="*" row="*" col="*" len="*" xmlns="http://speller.yandex.net/services/spellservice" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <word>*</word>
+  <s>*</s>
+</error>***
+это как-то много. вот word и s было бы поприкольнее проверять и понадежнее.
 ***пожелания***
 3. кейс checkOptionToIgnoreDigits тоже хороший кандидат на DDT
-сделала
+сделала +
 4. пару тетсов на другой эндпоинт и погруппировать кейсы
 сделала кейс на сhecTexts в кейсе checkRequestWithMultipleLines
 ***что понравилось***
 5. названия тестов читабельные
 6. хорошо разнесены проперти
-спасибо)
+спасибо)+
