@@ -1,6 +1,5 @@
 package api2;
 
-import api2.beans.YandexSpellerAnswer;
 import api2.core.constants.YandexSpellerConstants.*;
 import api2.core.YandexSpellerApiCheckTexts;
 import io.restassured.RestAssured;
@@ -22,7 +21,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkUnknownWordError() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.EN)
                         .options(0)
@@ -36,7 +35,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkIncorrectSpacing() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with().
                         language(Languages.EN, Languages.RU)
                         .options(0)
@@ -65,7 +64,7 @@ public class YandexSpellerCheckTextsTest {
     //Service Bug
     @Test
     public void checkRepeatWordOption() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.RU)
                         .options(8)
@@ -79,7 +78,7 @@ public class YandexSpellerCheckTextsTest {
     //Service Bug
     @Test
     public void checkIgnoreCapitalLettersAndDigitsOption() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.RU)
                         .options(2, 4, 512)
@@ -91,7 +90,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkErrorAttributesInResponse() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.EN)
                         .options(0)
@@ -117,7 +116,7 @@ public class YandexSpellerCheckTextsTest {
     //Service Bug
     @Test
     public void checkOptionToIgnoreDigits() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.EN)
                         .options(2)
@@ -130,7 +129,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void incorrectRuWordInEnDictionaryCheck() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.EN)
                         .options(2)
@@ -143,7 +142,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void incorrectEnWordInRuDictionaryCheck() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.RU)
                         .options(2)
@@ -159,7 +158,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkWordsWithDigits() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .language(Languages.EN)
                         .options(0)
@@ -178,7 +177,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkDefaultLanguage() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .texts(RU_WORD.wrongVer(), EN_WORD.wrongVer())
                         .callApi());
@@ -192,7 +191,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkSeveralErrorsInText() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .texts(SEVERAL_ERRORS.wrongVer(), EN_WORD.wrongVer())
                         .callApi());
@@ -207,7 +206,7 @@ public class YandexSpellerCheckTextsTest {
 
     @Test
     public void checkCorrectTexts() {
-        List<YandexSpellerAnswer> answer =
+        List<beans.YandexSpellerAnswer> answer =
                 YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
                         .texts(SEVERAL_ERRORS.corrVer(), EN_WORD.corrVer())
                         .callApi());

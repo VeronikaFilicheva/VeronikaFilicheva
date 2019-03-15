@@ -1,4 +1,5 @@
-package api2.beans;
+
+package beans;
 
 import java.util.ArrayList;
 import java.util.List;

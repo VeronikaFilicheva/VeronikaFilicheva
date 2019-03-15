@@ -1,6 +1,5 @@
 package api2.core;
 
-import api2.beans.YandexSpellerAnswer;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import io.restassured.RestAssured;
@@ -20,7 +19,7 @@ import static org.hamcrest.Matchers.lessThan;
 
 
 public class YandexSpellerApiCheckTexts {
-    
+
     private HashMap<String, Object> params = new HashMap<>();
 
     public static class ApiBuilder {
@@ -64,11 +63,11 @@ public class YandexSpellerApiCheckTexts {
         return new ApiBuilder(api);
     }
 
-    public static List<YandexSpellerAnswer> getYandexSpellerAnswers(Response response) {
-        List<List<YandexSpellerAnswer>> answers =  new Gson().fromJson(response.asString().trim(), new TypeToken<List<List<YandexSpellerAnswer>>>() {
+    public static List<beans.YandexSpellerAnswer> getYandexSpellerAnswers(Response response) {
+        List<List<beans.YandexSpellerAnswer>> answers =  new Gson().fromJson(response.asString().trim(), new TypeToken<List<List<beans.YandexSpellerAnswer>>>() {
         }.getType());
-        List<YandexSpellerAnswer> finalAnswer = new ArrayList<>();
-        for(List<YandexSpellerAnswer> answer: answers){
+        List<beans.YandexSpellerAnswer> finalAnswer = new ArrayList<>();
+        for(List<beans.YandexSpellerAnswer> answer: answers){
             finalAnswer.addAll(answer);
         }
         return finalAnswer;
