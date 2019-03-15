@@ -2,7 +2,7 @@ package api2.core.constants;
 
 public class YandexSpellerConstants {
 
-    public static final String YANDEX_SPELLER_API_URI = "https://speller.yandex.net/services/spellservice.json/checkTexts";
+    public static final String YANDEX_SPELLER_API_URI = "https://speller.yandex.net/services/spellservice.json/";
     public static final String PARAM_TEXTS = "text";
     public static final String PARAM_OPTIONS = "options";
     public static final String PARAM_LANGUAGES = "languages";

@@ -14,6 +14,7 @@ import org.apache.http.HttpStatus;
 import java.util.*;
 import java.util.stream.IntStream;
 
+import static api2.core.constants.SoapActions.CHECK_TEXTS;
 import static api2.core.constants.YandexSpellerConstants.*;
 import static org.hamcrest.Matchers.lessThan;
 
@@ -54,7 +55,7 @@ public class YandexSpellerApiCheckTexts {
             return RestAssured.with()
                     .queryParams(spellerApi.params)
                     .log().all()
-                    .get(YANDEX_SPELLER_API_URI).prettyPeek();
+                    .get(YANDEX_SPELLER_API_URI.concat(CHECK_TEXTS.getMethod())).prettyPeek();
         }
     }
 
@@ -86,7 +87,7 @@ public class YandexSpellerApiCheckTexts {
         return new RequestSpecBuilder()
                 .setAccept(ContentType.XML)
                 .setRelaxedHTTPSValidation()
-                .setBaseUri(YANDEX_SPELLER_API_URI)
+                .setBaseUri(YANDEX_SPELLER_API_URI.concat(CHECK_TEXTS.getMethod()))
                 .build();
     }
 }
