@@ -190,4 +190,19 @@ public class YandexSpellerCheckTextsTest {
         assertThat("Wrong suggestion", answer.get(1).s, hasItem(EN_WORD.corrVer()));
     }
 
+    @Test
+    public void checkSeveralErrorsInText() {
+        List<YandexSpellerAnswer> answer =
+                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
+                        .texts(SEVERAL_ERRORS.wrongVer(), EN_WORD.wrongVer())
+                        .callApi());
+
+        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
+        assertThat("Wrong suggestion", answer.get(0).s, hasItem(SEVERAL_ERRORS1.corrVer()));
+        assertThat("Wrong suggestion", answer.get(1).s, hasItem(SEVERAL_ERRORS.corrVer()));
+
+        assertThat("Incorrect Error", answer.get(2).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
+        assertThat("Wrong suggestion", answer.get(2).s, hasItem(EN_WORD.corrVer()));
+    }
+
 }

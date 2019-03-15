@@ -75,7 +75,7 @@ public class YandexSpellerApiCheckTexts {
             if(answer.size()<1){
                 return finalAnswerList;
             }
-            finalAnswerList.add(answer.get(0));
+            finalAnswerList.addAll(answer);
         }
         return finalAnswerList;
     }

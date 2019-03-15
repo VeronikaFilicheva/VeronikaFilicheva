@@ -12,7 +12,9 @@ public enum TestTexts {
     RU_INCORRECT_SPACING("тест прошел","тестпрошел"),
     EN_INCORRECT_SPACING("test is", "testis good"),
     REPEAT_WORD_EN("so", "Weather was so so good"),
-    REPEAT_WORD_RU("важны", "Тесты важны важны");
+    REPEAT_WORD_RU("важны", "Тесты важны важны"),
+    SEVERAL_ERRORS1("test", "tist is impotant"),
+    SEVERAL_ERRORS("important", "tist is impotant");
 
     private String corrVer;
     private String wrongVer;
