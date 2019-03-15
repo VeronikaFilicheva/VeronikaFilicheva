@@ -68,16 +68,13 @@ public class YandexSpellerApiCheckTexts {
     }
 
     public static List<YandexSpellerAnswer> getYandexSpellerAnswers(Response response) {
-        List<List<YandexSpellerAnswer>> answersList =  new Gson().fromJson(response.asString().trim(), new TypeToken<List<List<YandexSpellerAnswer>>>() {
+        List<List<YandexSpellerAnswer>> answers =  new Gson().fromJson(response.asString().trim(), new TypeToken<List<List<YandexSpellerAnswer>>>() {
         }.getType());
-        List<YandexSpellerAnswer> finalAnswerList = new ArrayList<>();
-        for(List<YandexSpellerAnswer> answer: answersList){
-            if(answer.size()<1){
-                return finalAnswerList;
-            }
-            finalAnswerList.addAll(answer);
+        List<YandexSpellerAnswer> finalAnswer = new ArrayList<>();
+        for(List<YandexSpellerAnswer> answer: answers){
+            finalAnswer.addAll(answer);
         }
-        return finalAnswerList;
+        return finalAnswer;
     }
 
     public static ResponseSpecification successResponse() {
