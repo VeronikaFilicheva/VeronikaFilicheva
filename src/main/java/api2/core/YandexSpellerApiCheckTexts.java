@@ -20,10 +20,7 @@ import static org.hamcrest.Matchers.lessThan;
 
 
 public class YandexSpellerApiCheckTexts {
-
-    private YandexSpellerApiCheckTexts() {
-    }
-
+    
     private HashMap<String, Object> params = new HashMap<>();
 
     public static class ApiBuilder {
