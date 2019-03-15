@@ -1,12 +1,11 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea/
-/src/test/java/lesson1/
-/src/test/java/lesson2/
 
 /VeronikaFilicheva.iml
 src/main/java/lesson/
 target/
-/src/test/java/lesson4/
+
 /.allure/
 /build/
 src/test/resources/downloads/
+/src/test/java/lessons/

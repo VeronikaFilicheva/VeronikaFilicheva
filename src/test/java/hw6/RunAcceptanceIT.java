@@ -22,6 +22,7 @@ public class RunAcceptanceIT extends AbstractTestNGCucumberTests {
 
         @BeforeMethod()
         public void driverSetUp() {
+            System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
             Configuration.browser = Browsers.CHROME;
             Configuration.startMaximized = true;
             Configuration.timeout = 5000;
