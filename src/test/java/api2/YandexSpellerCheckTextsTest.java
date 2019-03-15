@@ -205,4 +205,14 @@ public class YandexSpellerCheckTextsTest {
         assertThat("Wrong suggestion", answer.get(2).s, hasItem(EN_WORD.corrVer()));
     }
 
+    @Test
+    public void checkCorrectTexts() {
+        List<YandexSpellerAnswer> answer =
+                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
+                        .texts(SEVERAL_ERRORS.corrVer(), EN_WORD.corrVer())
+                        .callApi());
+
+        assertThat("Response is wrong", answer.size(), equalTo(0));
+
+    }
 }
