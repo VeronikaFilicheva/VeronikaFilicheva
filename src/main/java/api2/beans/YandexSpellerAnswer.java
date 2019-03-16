@@ -11,7 +11,7 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class YandexSpellerAnswer {
 
-    @SerializedName("code")
+    @SerializedName("code")//todo зачем эти две аннотации? можно ли без них обойтись?
     @Expose
     public Integer code;
     @SerializedName("pos")

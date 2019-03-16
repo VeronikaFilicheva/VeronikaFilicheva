@@ -1,21 +1,22 @@
 package api2;
 
-import api2.core.constants.YandexSpellerConstants.*;
+import static api2.core.constants.ErrorCodes.ERROR_CAPITALIZATION;
+import static api2.core.constants.ErrorCodes.ERROR_REPEAT_WORD;
+import static api2.core.constants.ErrorCodes.ERROR_UNKNOWN_WORD;
+import static api2.core.constants.TestTexts.*;
+import static api2.core.constants.YandexSpellerConstants.PARAM_LANGUAGES;
+import static api2.core.constants.YandexSpellerConstants.YANDEX_SPELLER_API_URI;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import api2.core.YandexSpellerApiCheckTexts;
+import api2.core.constants.YandexSpellerConstants.Languages;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
-
 import java.util.List;
-
-import static api2.core.constants.YandexSpellerConstants.PARAM_LANGUAGES;
-import static api2.core.constants.YandexSpellerConstants.YANDEX_SPELLER_API_URI;
-import static api2.core.constants.ErrorCodes.*;
-import static api2.core.constants.TestTexts.*;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class YandexSpellerCheckTextsTest {
 
@@ -28,6 +29,9 @@ public class YandexSpellerCheckTextsTest {
                         .texts(MOTHER.wrongVer(), BROTHER.wrongVer())
                         .callApi());
 
+//todo  assertThat("Error is incorrect", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
+//todo  этот вызов повторяется ис следующих тестах. может быть вынесен в отделый класс с асертами
+        //т.е. можно свестик методу AssertUnknownErrorCode(answer.get(0).code);
         assertThat("Error is incorrect", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
         assertThat("Wrong suggestion EN 1", answer.get(0).s, hasItem(MOTHER.corrVer()));
         assertThat("Wrong suggestion EN 2", answer.get(1).s, hasItem(BROTHER.corrVer()));
@@ -97,6 +101,7 @@ public class YandexSpellerCheckTextsTest {
                         .texts(MOTHER.wrongVer(), BROTHER.wrongVer())
                         .callApi());
 
+//todo делай проверку через expected объект, а не каждое поле поотдельности, а лучше сразу для листа. чтобы асерт был один, а не 12
         assertThat(answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
         assertThat(answer.get(0).pos, equalTo(MOTHER.wrongVer().indexOf("mottherr")));
         assertThat(answer.get(0).row, equalTo(0));
