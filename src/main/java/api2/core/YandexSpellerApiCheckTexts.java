@@ -18,7 +18,13 @@ import static api2.core.constants.SoapActions.CHECK_TEXTS;
 import static api2.core.constants.YandexSpellerConstants.*;
 import static org.hamcrest.Matchers.lessThan;
 
-
+//todo очень напоминает ранее сданную работу другого студента. 
+//разбей на 3 класса - 
+//один - класс с проверкой результата, где будут храниться методы, о которых я написала в комментариях к тестам (verifySuccess(), verifyCorrectHints() и т.д.)
+//другой класс - формирование параметров запроса. спарой осмысленных методов, которые будут возвращать HashMap<String, Object> params. 
+// постарайся сделать класс расширяемым (на случай, если количество параметров может увеличиться) и расширяемым (на предмет возсожности использовать его с другими сервисами)
+//третий - ResponseSpecification и вызов самого метода GET. callApi название метода непонятное.
+//эндпоитов может быть много у сервиса, так что какой конкретно - непонятно. 
 public class YandexSpellerApiCheckTexts {
 
     private HashMap<String, Object> params = new HashMap<>();
