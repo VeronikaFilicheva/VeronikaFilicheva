@@ -1,6 +1,7 @@
 package api2.core.constants;
 
 public enum TestTexts {
+    //todo вынеси в модуль test. Вообще, енам в этом случае не очень хорош и громоздок. Тестовыми данными будет достаточно тяжело манипулировать, добавлять новые
     MOTHER("mother", "mottherr"),
     BROTHER("brother", "bbrother"),
     EN_WORD("weather", "weatherrr"),

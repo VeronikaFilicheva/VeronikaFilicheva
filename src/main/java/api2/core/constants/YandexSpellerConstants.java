@@ -1,6 +1,8 @@
 package api2.core.constants;
 
 public class YandexSpellerConstants {
+    //todo хорошо иметь файл с константами, это праивльно. https://speller.yandex.net лучше вообще вынести в файл test.properties
+    //todo, а endpoint оставить тут. Так тестовые запуски станут энво-независимыми :)
 
     public static final String YANDEX_SPELLER_API_URI = "https://speller.yandex.net/services/spellservice.json/";
     public static final String PARAM_TEXTS = "text";
