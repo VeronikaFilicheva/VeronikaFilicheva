@@ -18,7 +18,6 @@ import static api2.core.constants.SoapActions.CHECK_TEXTS;
 import static api2.core.constants.YandexSpellerConstants.*;
 import static org.hamcrest.Matchers.lessThan;
 
-//todo очень напоминает ранее сданную работу другого студента 
 //разбей на 3 класса -  
 //ОДИН - класс с проверкой результата, где будут храниться методы, о которых я написала в комментариях 
 //к тестам (verifySuccess(), verifyCorrectHints() и т.д.) 
