@@ -2,15 +2,11 @@ package api2.core;
 
 import api2.beans.YandexSpellerAnswer;
 import api2.core.constants.ErrorCodes;
-import org.testng.asserts.SoftAssert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertFalse;
 
 public class CheckResponse {
