@@ -1,54 +1,49 @@
 package api2;
 
-import static api2.core.constants.ErrorCodes.ERROR_CAPITALIZATION;
-import static api2.core.constants.ErrorCodes.ERROR_REPEAT_WORD;
-import static api2.core.constants.ErrorCodes.ERROR_UNKNOWN_WORD;
-import static api2.core.constants.TestTexts.*;
-import static api2.core.constants.YandexSpellerConstants.PARAM_LANGUAGES;
-import static api2.core.constants.YandexSpellerConstants.YANDEX_SPELLER_API_URI;
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import api2.core.YandexSpellerApiCheckTexts;
-import api2.core.constants.YandexSpellerConstants.Languages;
+import api2.beans.YandexSpellerAnswer;
+import api2.core.CheckResponse;
+import api2.core.YandexSpellerApi;
+import api2.core.constants.Languages;
+import api2.data.DataProviders;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import static api2.core.constants.ErrorCodes.*;
+import static api2.core.CheckResponse.*;
+import static api2.core.constants.SoapActions.*;
+import static api2.core.constants.YandexSpellerConstants.*;
+
 
 public class YandexSpellerCheckTextsTest {
+    CheckResponse checkingAnswer = new CheckResponse();
 
-    @Test
-    public void checkUnknownWordError() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.EN)
+    @Test(dataProvider = "unknownWordError", dataProviderClass = DataProviders.class)
+    public void checkUnknownWordError(String[] texts, Languages lang, List[] expectedSuggestions) {
+
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
                         .options(0)
-                        .texts(MOTHER.wrongVer(), BROTHER.wrongVer())
-                        .callApi());
+                        .texts(texts)
+                        .getCheckTexts());
 
-//todo  assertThat("Error is incorrect", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-//todo  этот вызов повторяется ис следующих тестах. может быть вынесен в отделый класс с асертами
-        //т.е. можно свестик методу AssertUnknownErrorCode(answer.get(0).code);
-        assertThat("Error is incorrect", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion EN 1", answer.get(0).s, hasItem(MOTHER.corrVer()));
-        assertThat("Wrong suggestion EN 2", answer.get(1).s, hasItem(BROTHER.corrVer()));
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
+
     }
 
-    @Test
-    public void checkIncorrectSpacing() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with().
-                        language(Languages.EN, Languages.RU)
+    @Test(dataProvider = "incorrectSpacing", dataProviderClass = DataProviders.class)
+    public void checkIncorrectSpacing(String[] texts, Languages lang, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
                         .options(0)
-                        .texts(EN_INCORRECT_SPACING.wrongVer(), RU_INCORRECT_SPACING.wrongVer())
-                        .callApi());
+                        .texts(texts)
+                        .getCheckTexts());
 
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion EN", answer.get(0).s, hasItem(EN_INCORRECT_SPACING.corrVer()));
-        assertThat("Wrong suggestion RU", answer.get(1).s, hasItem(RU_INCORRECT_SPACING.corrVer()));
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
+
     }
 
     // bug, response should contain 400 Status Code
@@ -59,164 +54,106 @@ public class YandexSpellerCheckTextsTest {
                 .param(PARAM_LANGUAGES, Languages.IT)
                 .log().everything()
                 .when()
-                .get(YANDEX_SPELLER_API_URI)
+                .get(YANDEX_SPELLER+SPELLER_JSON +CHECK_TEXTS.getMethod())
                 .then()
                 .assertThat()
                 .statusCode(HttpStatus.SC_BAD_REQUEST);
+
     }
 
     //Service Bug
-    @Test
-    public void checkRepeatWordOption() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.RU)
+    @Test(dataProvider = "repeatWords", dataProviderClass = DataProviders.class)
+    public void checkRepeatWordOption(String[] texts, Languages lang, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
                         .options(8)
-                        .texts(REPEAT_WORD_RU.wrongVer())
-                        .callApi());
+                        .texts(texts)
+                        .getCheckTexts());
 
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_REPEAT_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(REPEAT_WORD_RU.corrVer()));
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_REPEAT_WORD);
+    }
+
+    ///Service Bug
+    @Test(dataProvider = "digitAndCapitalization", dataProviderClass = DataProviders.class)
+    public void checkIgnoreCapitalLettersAndDigitsOption(String[] texts, Languages lang, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
+                        .options(2,4,512)
+                        .texts(texts)
+                        .getCheckTexts());
+
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_CAPITALIZATION);
     }
 
     //Service Bug
-    @Test
-    public void checkIgnoreCapitalLettersAndDigitsOption() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.RU)
-                        .options(2, 4, 512)
-                        .texts(RU_WRONG_CAPITAL.wrongVer())
-                        .callApi());
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_CAPITALIZATION.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(REPEAT_WORD_RU.corrVer()));
+    @Test(dataProvider = "digitAndCapitalization", dataProviderClass = DataProviders.class)
+    public void checkOptionToIgnoreDigits(String[] texts, Languages lang, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
+                        .options(2)
+                        .texts(texts)
+                        .getCheckTexts());
+
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
     }
 
-    @Test
-    public void checkErrorAttributesInResponse() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.EN)
+    @Test(dataProvider = "wordsWithDigits", dataProviderClass = DataProviders.class)
+    public void checkWordsWithDigits(String[] texts, Languages lang, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
                         .options(0)
-                        .texts(MOTHER.wrongVer(), BROTHER.wrongVer())
-                        .callApi());
+                        .texts(texts)
+                        .getCheckTexts());
 
-//todo делай проверку через expected объект, а не каждое поле поотдельности, а лучше сразу для листа. чтобы асерт был один, а не 12
-        assertThat(answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat(answer.get(0).pos, equalTo(MOTHER.wrongVer().indexOf("mottherr")));
-        assertThat(answer.get(0).row, equalTo(0));
-        assertThat(answer.get(0).col, equalTo(0));
-        assertThat(answer.get(0).len, equalTo(answer.get(0).word.length()));
-        assertThat(answer.get(0).s, hasItem(MOTHER.corrVer()));
-
-        assertThat(answer.get(1).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat(answer.get(1).pos, equalTo(BROTHER.wrongVer().indexOf("bbrother")));
-        assertThat(answer.get(1).row, equalTo(0));
-        assertThat(answer.get(1).col, equalTo(0));
-        assertThat(answer.get(1).len, equalTo(answer.get(0).word.length()));
-        assertThat(answer.get(1).s, hasItem(BROTHER.corrVer()));
-
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
     }
 
-    //Service Bug
-    @Test
-    public void checkOptionToIgnoreDigits() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.EN)
-                        .options(2)
-                        .texts(EN_WITH_DIGITS.wrongVer())
-                        .callApi());
-
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(EN_WITH_DIGITS.corrVer()));
-    }
-
-    @Test
-    public void incorrectRuWordInEnDictionaryCheck() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.EN)
-                        .options(2)
-                        .texts(MOTHER.wrongVer(), RU_WORD.wrongVer(), EN_WORD.wrongVer())
-                        .callApi());
-
-        assertThat("Incorrect Error", answer.get(1).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(1).s, hasItem(RU_WORD.corrVer()));
-    }
-
-    @Test
-    public void incorrectEnWordInRuDictionaryCheck() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.RU)
-                        .options(2)
-                        .texts(MOTHER.wrongVer(), RU_WORD.wrongVer(), EN_WORD.wrongVer())
-                        .callApi());
-
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(MOTHER.corrVer()));
-
-        assertThat("Incorrect Error",answer.get(2).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(2).s, hasItem(EN_WORD.corrVer()));
-    }
-
-    @Test
-    public void checkWordsWithDigits() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .language(Languages.EN)
+    @Test(dataProvider = "incorrectRuWord", dataProviderClass = DataProviders.class)
+    public void incorrectRuWordInEnDictionaryCheck(String[] texts, Languages lang, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
                         .options(0)
-                        .texts(EN_WITH_DIGITS.wrongVer(), EN_WITH_DIGITS_BEGIN.wrongVer(),EN_WITH_DIGITS_END.wrongVer())
-                        .callApi());
+                        .texts(texts)
+                        .getCheckTexts());
 
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(EN_WITH_DIGITS.corrVer()));
-
-        assertThat("Incorrect Error", answer.get(1).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(1).s, hasItem(EN_WITH_DIGITS_BEGIN.corrVer()));
-
-        assertThat("Incorrect Error", answer.get(2).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(2).s, hasItem(EN_WITH_DIGITS_END.corrVer()));
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
     }
 
-    @Test
-    public void checkDefaultLanguage() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .texts(RU_WORD.wrongVer(), EN_WORD.wrongVer())
-                        .callApi());
+    @Test(dataProvider = "ruEnTexts", dataProviderClass = DataProviders.class)
+    public void checkDefaultLanguage(String[] texts, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .texts(texts)
+                        .getCheckTexts());
 
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(RU_WORD.corrVer()));
-
-        assertThat("Incorrect Error", answer.get(1).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(1).s, hasItem(EN_WORD.corrVer()));
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
     }
 
-    @Test
-    public void checkSeveralErrorsInText() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .texts(SEVERAL_ERRORS.wrongVer(), EN_WORD.wrongVer())
-                        .callApi());
+    @Test(dataProvider = "severalErrors", dataProviderClass = DataProviders.class)
+    public void checkSeveralErrorsInText(String[] texts, List[] expectedSuggestions) {
+        List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .texts(texts)
+                        .getCheckTexts());
 
-        assertThat("Incorrect Error", answer.get(0).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(0).s, hasItem(SEVERAL_ERRORS1.corrVer()));
-        assertThat("Wrong suggestion", answer.get(1).s, hasItem(SEVERAL_ERRORS.corrVer()));
-
-        assertThat("Incorrect Error", answer.get(2).code, equalTo(ERROR_UNKNOWN_WORD.errorCode));
-        assertThat("Wrong suggestion", answer.get(2).s, hasItem(EN_WORD.corrVer()));
+        checkAnswer(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
     }
 
-    @Test
-    public void checkCorrectTexts() {
-        List<beans.YandexSpellerAnswer> answer =
-                YandexSpellerApiCheckTexts.getYandexSpellerAnswers(YandexSpellerApiCheckTexts.with()
-                        .texts(SEVERAL_ERRORS.corrVer(), EN_WORD.corrVer())
-                        .callApi());
+    @Test(dataProvider = "unknownWordError", dataProviderClass = DataProviders.class)
+    public void checkErrorAttributesInResponse(String[] texts, Languages lang, List[] expectedSuggestions) {
+         List<List<YandexSpellerAnswer>> answer =
+                YandexSpellerApi.getYandexSpellerAnswers(YandexSpellerApi.with()
+                        .language(lang)
+                        .texts(texts)
+                        .getCheckTexts());
 
-        assertThat("Response is wrong", answer.size(), equalTo(0));
+         checkErrorAttribute(texts, expectedSuggestions, answer, ERROR_UNKNOWN_WORD);
 
     }
+
 }

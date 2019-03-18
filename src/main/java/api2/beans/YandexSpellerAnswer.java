@@ -1,36 +1,25 @@
-
-package beans;
+package api2.beans;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 public class YandexSpellerAnswer {
 
-    @SerializedName("code")//todo зачем эти две аннотации? можно ли без них обойтись?
-    @Expose
     public Integer code;
-    @SerializedName("pos")
-    @Expose
+
     public Integer pos;
-    @SerializedName("row")
-    @Expose
+
     public Integer row;
-    @SerializedName("col")
-    @Expose
+
     public Integer col;
-    @SerializedName("len")
-    @Expose
+
     public Integer len;
-    @SerializedName("word")
-    @Expose
+
     public String word;
-    @SerializedName("s")
-    @Expose
+
     public List<String> s = new ArrayList<String>();
 
     @Override
