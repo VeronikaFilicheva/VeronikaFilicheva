@@ -1,11 +1,12 @@
-package api2.data;
+package data;
 
 import org.testng.annotations.DataProvider;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static api2.core.constants.Languages.*;
+import static api2.core.constants.Languages.EN;
+import static api2.core.constants.Languages.RU;
 
 public class DataProviders {
 

@@ -4,7 +4,7 @@ import api2.beans.YandexSpellerAnswer;
 import api2.core.CheckResponse;
 import api2.core.YandexSpellerApi;
 import api2.core.constants.Languages;
-import api2.data.DataProviders;
+import data.DataProviders;
 import io.restassured.RestAssured;
 import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
