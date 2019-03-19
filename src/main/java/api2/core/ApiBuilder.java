@@ -14,7 +14,6 @@ import static api2.core.constants.SoapActions.*;
 import static api2.core.constants.YandexSpellerConstants.*;
 
 public class ApiBuilder {
-    private HashMap<String, Object> params = new HashMap<>();
 
     YandexSpellerApi spellerApi;
 
